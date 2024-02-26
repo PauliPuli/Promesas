@@ -8,17 +8,26 @@
 
 async function cargarDatos(){
     try{
-        let respuesta= await fetch('https://jsonplaceholder.typicode.com/photos');
-        let datos= await respuesta.json();
+        let data= await fetch('https://jsonplaceholder.typicode.com/photos');
+        let respuesta= await data.json();
+        respuesta.forEach(element => {
+            if(element.id <=20)
+                console.log(`${element.id} | ${element.title} | ${element.url} | ${element.thumbnailUrl}`);
+            
+        });
     } catch (e){
         console.log(e)
     }
-    
-    return datos;
-    console.log(respuesta)
-    console.log(datos)
 }
 cargarDatos();
+setTimeout(()=> {
+    const promise = new Promise((resolve, reject) => {
+        const value = true;
+        value ? resolve('Información enviada') : reject('Rechazado')
+        })
+        promise.then(resp => console.log(resp))
+},3000)
+
 
 
 //1)Crear una función asíncrona para obtener los datos de la URL.//
